@@ -2,7 +2,13 @@ package DotCom;
 
 import java.io.*;
 import java.util.*;
-
+/**
+ * This class manages the grid information, creates the random location coordinates, and reads in the user input
+ * 
+ * Created by HJF
+ * @author mattj
+ *
+ */
 public class GameHelper {
 	private static final String alphabet = "abcdefg";
 	private int gridLength = 7;
@@ -10,21 +16,48 @@ public class GameHelper {
 	private int [] grid = new int[gridSize];
 	private int comCount = 0;
 	
+	/**
+	 * Accessor for the alphabet instance variable
+	 * 
+	 * Created by Matt J
+	 * @return the alphabet string
+	 */
 	public static String getAlphabet() {
 		return alphabet;
 	}
 	
+	/**
+	 * Accessor for the gridlength instance variable
+	 * 
+	 * Created by Matt J
+	 * @return the length of grid, aka num of rows
+	 */
 	public int getGridLength() {
 		return this.gridLength;
 	}
 	
+	/**
+	 * Accessor for the grid size
+	 * 
+	 * Create by Matt J
+	 * @return the grid size
+	 */
 	public int getGridSize() {
 		return this.gridSize;
 	}
 	
+	/**
+	 * Displays the prompt, aka "Enter a guess: " and returns what the user enters
+	 * 
+	 * Created by HFJ
+	 * @param prompt
+	 * @return
+	 */
  	public String getUserInput(String prompt) {
 		String inputLine = null;
-		System.out.print(prompt + " ");
+		System.out.print(prompt + " ");		//display the question for the user to answer
+		
+		//the following will take the input from the user and catch IO exception if invalid
 		try {
 			BufferedReader is = new BufferedReader(
 					new InputStreamReader(System.in));
@@ -33,9 +66,17 @@ public class GameHelper {
 		} catch (IOException e) {
 			System.out.println("IOEception: " + e);
 		}
-		return inputLine.toLowerCase();
+		
+		return inputLine.toLowerCase();		//returns lowercase version of input for standardizations
 	}
-	
+
+ 	/**
+ 	 * creates the random coords for the dotcom object
+ 	 * 
+ 	 * Created by HFJ
+ 	 * @param comSize
+ 	 * @return
+ 	 */
 	public ArrayList<String> placeDotCom(int comSize) {
 		ArrayList<String> alphaCells = new ArrayList<String>();
 		
